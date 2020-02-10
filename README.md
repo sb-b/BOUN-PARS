@@ -17,15 +17,15 @@ After successfully installed the pre-trained TurkuNLP pipeline model, do the fol
 ```
 git clone https://github.com/sb-b/BOUN-PARS.git
 ```
-
-* Navigate to Parser-hybrid/saves folder.
-
+* Put everything inside BOUN-PARS folder into Turku-neural-parser-pipeline folder:
+```
+mv BOUN-PARS/* .
+```
 * Download and unpack the pre-trained morphology-based parser model :
 ```
 wget http://tabilab.cmpe.boun.edu.tr/BOUN-PARS/model_tr_imst_ruled_morphed.tgz
 tar -xvf model_tr_imst_ruled_morphed.tgz
 ```
-
 Go back to Turku-neural-parser-pipeline folder and run main.sh:
 
 ```
