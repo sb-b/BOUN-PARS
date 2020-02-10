@@ -20,7 +20,7 @@ python3 ./morp-based-model/add_morp_to_conllu.py infile1 input-text-parsed-disam
 python3 ./rule-based-model/rule_based_parser_tags_ablation.py input-fullmorphed.conllu
 python3 ./morp-based-model/add_morp_to_conllu.py ruled-input-fullmorphed.conllu input-text-parsed-disamb.txt input-morphed-ruled.conllu last
 
-python3 ./Parser-v2-mine/main.py --save_dir ./Parser-v2-mine/saves/model_tr_imst_ruled_morphed_new_1 parse ./input-morphed-ruled.conllu --output_dir ./ --output_file  morphed-ruled-new-1_input-morphed-ruled_output.conllu
+python3 ./Parser-hybrid/main.py --save_dir ./Parser-hybrid/saves/model_tr_imst_ruled_morphed_new_1 parse ./input-morphed-ruled.conllu --output_dir ./ --output_file  morphed-ruled-new-1_input-morphed-ruled_output.conllu
 
 rm infile0 input-text.txt input-text-parsed.txt input-text-parsed-disamb.txt input-fullmorphed.conllu ruled-input-fullmorphed.conllu
 
