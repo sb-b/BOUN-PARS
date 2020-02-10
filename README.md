@@ -9,6 +9,31 @@ The pre-processing steps of parsing from raw text: the segmentation, morphologic
 # Installation
 
 The required packages for the pre-trained TurkuNLP pipeline model is listed [here](https://turkunlp.org/Turku-neural-parser-pipeline/install.html). 
+
+After successfully installed the pre-trained TurkuNLP pipeline model, do the following steps:
+
+* Navigate to Turku-neural-parser-pipeline folder.
+* Clone the parser:
+```
+git clone https://github.com/sb-b/BOUN-PARSE.git
+```
+
+* Navigate to Parser-v2-mine/saves folder.
+
+* Download and unpack the pre-trained morphology-based parser model :
+```
+wget http://tabilab.cmpe.boun.edu.tr/BOUN-PARS/model_tr_imst_ruled_morphed.tgz
+tar -xvf model_tr_imst_ruled_morphed.tgz
+```
+
+Go back to Turku-neural-parser-pipeline folder and run main.sh:
+
+```
+cd ../..
+sh main.sh "bu örnek bir cümledir."
+```
+
+
  
 
 BOUN-Pars is developed by Şaziye Betül Özateş, Arzucan Özgür, Tunga Güngör from in the Department of Computer Engineering, and Balkız Öztürk from in the Department of Linguistics , at Bogazici University. 
