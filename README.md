@@ -18,7 +18,7 @@ After successfully installed the pre-trained TurkuNLP pipeline model, do the fol
 git clone https://github.com/sb-b/BOUN-PARS.git
 ```
 
-* Navigate to Parser-v2-mine/saves folder.
+* Navigate to Parser-hybrid/saves folder.
 
 * Download and unpack the pre-trained morphology-based parser model :
 ```
