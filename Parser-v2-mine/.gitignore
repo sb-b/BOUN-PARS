@@ -1,0 +1,6 @@
+*.bak
+**/*.pyc
+data/**
+writeups/**
+saves/**
+config/defaults.cfg
