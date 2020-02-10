@@ -38,7 +38,7 @@ section_names = set()
 # --section_name opt1=value1 opt2=value2 opt3=value3
 
 # I made it full path it was config/defaults.cfg before !!!!!!!!!!!!!!!!!!!!!!!
-with codecs.open('./Parser-v2-mine/config/defaults.cfg') as f:
+with codecs.open('./Parser-hybrid/config/defaults.cfg') as f:
   section_regex = re.compile('\[(.*)\]')
   for line in f:
     match = section_regex.match(line)
