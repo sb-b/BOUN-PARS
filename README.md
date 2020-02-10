@@ -15,7 +15,7 @@ After successfully installed the pre-trained TurkuNLP pipeline model, do the fol
 * Navigate to Turku-neural-parser-pipeline folder.
 * Clone the parser:
 ```
-git clone https://github.com/sb-b/BOUN-PARSE.git
+git clone https://github.com/sb-b/BOUN-PARS.git
 ```
 
 * Navigate to Parser-v2-mine/saves folder.
