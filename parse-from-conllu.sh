@@ -18,6 +18,8 @@ python3 ./morp-based-model/add_morpheme_to_conllu.py ruled-input-fullmorphed.con
 
 python3 ./Parser-hybrid/main.py --save_dir ./Parser-hybrid/saves/model_tr_imst_ruled_morphed_new_1 parse ./input-morphed-ruled.conllu --output_dir ./ --output_file  $2
 
-rm input-text.txt input-text-parsed.txt input-text-parsed-disamb.txt input-fullmorphed.conllu ruled-input-fullmorphed.conllu
+python3 ./restore_conllu_lines.py $2 $1
+
+rm input-text.txt input-text-parsed.txt input-text-parsed-disamb.txt input-fullmorphed.conllu ruled-input-fullmorphed.conllu $2
 
 
