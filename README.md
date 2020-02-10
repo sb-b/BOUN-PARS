@@ -28,11 +28,19 @@ mv BOUN-PARS/* .
 wget http://tabilab.cmpe.boun.edu.tr/BOUN-PARS/model_tr_imst_ruled_morphed.tgz
 tar -xvf model_tr_imst_ruled_morphed.tgz
 ```
-Go back to Turku-neural-parser-pipeline folder and run main.sh:
+
+## Parse CoNLL-U File
+To parse a CoNLL-U file, run the following command in Turku-neural-parser-pipeline folder:
+```
+sh parse-from-conllu.sh input.conllu output.conllu
+```
+
+
+## Parse Raw Text
+In Turku-neural-parser-pipeline folder, run parse-text.sh:
 
 ```
-cd ../..
-sh main.sh "bu örnek bir cümledir."
+sh parse-text.sh "bu örnek bir cümledir."
 ```
 
 
