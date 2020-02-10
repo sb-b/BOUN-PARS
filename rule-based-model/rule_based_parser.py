@@ -464,8 +464,6 @@ def mweRule(sent, lemmaList, uposList, xposList, morpList, ruleActions):
             popWord(sent,lemmaList,uposList,xposList,morpList,i+1)
             sent[i] = word+'#'+ind
             i = 0
-         else:
-            print("ERR: ",mwe_word)
 
       i = i + 1
    return ruleActions

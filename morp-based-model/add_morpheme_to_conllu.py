@@ -52,16 +52,11 @@ if __name__=="__main__":
                 #final_morp = final_morp.replace('[','-')
                 #final_morp = final_morp.replace(']','')
            
-            # print(final_morp)
-             #cols[1] = cols[1]+"#"+morps[i].split("\n")[j].split(" ")[1]
              if "-" not in cols[0]:
                 if type == "full":
-                   print(morpy)
                    cols[8] = morpy
                 elif type == "last":
                    cols[8] = final_morp
-               # cols[8] = final_morp
-               # cols[8] = morpy
           j = j + 1
           f_new.write(str(cols[0]+"\t"+cols[1]+"\t"+cols[2]+"\t"+cols[3]+"\t"+cols[4]+"\t"+cols[5]+"\t"+cols[6]+"\t"+cols[7]+"\t"+cols[8]+"\t"+cols[9]+"\n"))
           
