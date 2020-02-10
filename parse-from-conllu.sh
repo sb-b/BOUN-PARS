@@ -20,6 +20,8 @@ python3 ./Parser-hybrid/main.py --save_dir ./Parser-hybrid/saves/model_tr_imst_r
 
 python3 ./restore_conllu_lines.py $2 $1
 
-rm input-text.txt input-text-parsed.txt input-text-parsed-disamb.txt input-fullmorphed.conllu ruled-input-fullmorphed.conllu $2
+mv final_output.conllu $2
+
+rm input-text.txt input-text-parsed.txt input-text-parsed-disamb.txt input-fullmorphed.conllu ruled-input-fullmorphed.conllu input-morphed-ruled.conllu
 
 

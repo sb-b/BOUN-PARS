@@ -15,7 +15,7 @@ if __name__=="__main__":
    pred=codecs.open(pred_filename, encoding='utf-8', errors='ignore')
    base=codecs.open(base_filename, encoding='utf-8', errors='ignore')
 
-   write_file = codecs.open("output.conllu", "w", "utf-8")
+   write_file = codecs.open("final_output.conllu", "w", "utf-8")
 
    pred_sents = pred.read().split("\n\n")
    base_sents = base.read().split("\n\n")
@@ -31,7 +31,7 @@ if __name__=="__main__":
              pcols = pword.split("\t")
              bcols = bword.split("\t")
 
-             print(pcols)
+             
              write_file.write(pcols[0]+"\t"+pcols[1]+"\t"+pcols[2]+"\t"+pcols[3]+"\t"+pcols[4]+"\t"+pcols[5]+"\t"+pcols[6]+"\t"+pcols[7]+"\t"+bcols[8]+"\t"+bcols[9]+"\n")       
           
           else:

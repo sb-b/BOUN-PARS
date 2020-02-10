@@ -24,6 +24,9 @@ python3 ./Parser-hybrid/main.py --save_dir ./Parser-hybrid/saves/model_tr_imst_r
 
 python3 ./restore_conllu_lines.py morphed-ruled-new-1_input-morphed-ruled_output.conllu infile1
 
+mv final_output.conllu output.conllu
+
+
 rm infile0 input-text.txt input-text-parsed.txt input-text-parsed-disamb.txt input-fullmorphed.conllu ruled-input-fullmorphed.conllu input-morphed-ruled.conllu morphed-ruled-new-1_input-morphed-ruled_output.conllu
 
 mv infile1 input.conllu
