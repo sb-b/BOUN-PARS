@@ -21,6 +21,8 @@ git clone https://github.com/sb-b/BOUN-PARS.git
 ```
 mv BOUN-PARS/* .
 ```
+* Navigate to Parser-hybrid/saves folder.
+
 * Download and unpack the pre-trained morphology-based parser model :
 ```
 wget http://tabilab.cmpe.boun.edu.tr/BOUN-PARS/model_tr_imst_ruled_morphed.tgz
