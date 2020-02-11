@@ -46,7 +46,7 @@ sh parse-text.sh "bu örnek bir cümledir."
 
  
 
-BOUN-Pars is developed by Şaziye Betül Özateş, Arzucan Özgür, Tunga Güngör from in the Department of Computer Engineering, and Balkız Öztürk from in the Department of Linguistics , at Bogazici University. 
+BOUN-Pars is developed by Şaziye Betül Özateş, Arzucan Özgür, Tunga Güngör from the Department of Computer Engineering, and Balkız Öztürk from the Department of Linguistics, at Bogazici University. 
 
 Please cite the following papers if you make use of this tool:
 
