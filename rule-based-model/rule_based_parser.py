@@ -195,7 +195,7 @@ def properNounRule(sent, lemmaList, uposList, xposList, morpList, ruleActions):
        word1 = lemmaList[i] # sent[i].split('#',1)[0]
        word2 = lemmaList[i+1] # sent[i+1].split('#',1)[0]
 
-       if (i > 0 or (i == 0 and uposList[i] == "PROPN")) and word1[0].isupper() and word2[0].isupper() and isConsecutive(sent[i].split('#',1)[1],sent[i+1].split('#',1)[1]):
+       if (i > 0 or (i == 0 and "Prop" in morpList[i])) and word1[0].isupper() and word2[0].isupper() and isConsecutive(sent[i].split('#',1)[1],sent[i+1].split('#',1)[1]):
           tmpind = sent[i+1].split('#',1)[1]
           tmpind = int(tmpind)
              
@@ -518,7 +518,6 @@ def rule_based_parser(sent,lemmaList, uposList, xposList, morpList):
 
 def writeToConllFile(ruleList, filename):
 
-    #newFileName = "ruled_tr_imst-ud-test-9thcol-cpi-nc-pc-aaj-ac-ajc-ajn.conllu"
     newFileName = "ruled-"+filename
     f = codecs.open(filename, encoding='utf-8', errors='ignore')
     f_new = codecs.open(newFileName, "w", "utf-8")
@@ -547,16 +546,6 @@ def writeToConllFile(ruleList, filename):
          
 if __name__=="__main__":
 
-   # filename = "../../tr_imst-ud-test_baseline10_2-output.conllu"
-   # filename = "../../news_dataset.conllu"
-   # filename = "../../../../ud-eval/IMST_UD/tr_imst-ud-test.conllu"
-   # filename = "../../../../ud-eval/IMST_UD/tr_imst-ud-train.conllu"
-   # filename = "../../../../ud-eval/IMST_UD/tr_imst-ud-dev.conllu"
-   # filename = "../../../../cesitli_scriptler/tr_imst-ud-test-morphed-8thcol-full.conllu"
-   # filename = "../../../../ud-eval/reannotated/train/tr-ud-train-finished.conllu"
-   # filename = "../../../../ud-eval/reannotated/dev/tr-ud-dev-finished.conllu"
-   # filename = "../../../../ud-eval/reannotated/tr-ud-test-finished.conllu"
-   # filename = "../../tr_imst-ud-test-output.conllu"
     filename = sys.argv[1]
    
     f=codecs.open(filename, encoding='utf-8', errors='ignore')
