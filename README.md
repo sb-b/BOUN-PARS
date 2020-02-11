@@ -1,6 +1,6 @@
 # BOUN-Pars
 
-BOUN-Pars is a deep learning-based dependency parser developed for Turkish. It is based on Stanford's graph-based neural dependency parser and uses linguistically oriented rules and benefits from morphological information of words.
+BOUN-Pars is a deep learning-based dependency parser developed for Turkish. It is based on [Stanford's graph-based neural dependency parser](https://github.com/tdozat/Parser-v2) and uses linguistically oriented rules and benefits from morphological information of words.
 
 BOUN-Pars creates dependency parse trees of Turkish sentences in CoNLL-U format.
 
