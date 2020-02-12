@@ -54,5 +54,5 @@ Please cite the following papers if you make use of this tool:
 @article{ozates2020hybrid,
          author ={Şaziye Betül Özateş,  Arzucan Özgür, Tunga Güngör, Balkız Öztürk},
          title ={A Hybrid Approach to Dependency Parsing: Combining Rules and Morphology with Deep Learning},
-         journal ={Computational Linguistics Journal (Under Review)}}
+         journal ={Under Review}}
 ```
