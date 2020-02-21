@@ -22,6 +22,19 @@ git clone https://github.com/sb-b/BOUN-PARS.git
 mv BOUN-PARS/* .
 ```
 
+## Parse Raw Text
+In Turku-neural-parser-pipeline folder:
+
+* Download and unpack the pre-trained morphology-based parser pipeline model :
+```
+wget http://tabilab.cmpe.boun.edu.tr/BOUN-PARS/model_tr_imst_ruled_morphed_pipeline.tgz
+tar -xvf model_tr_imst_ruled_morphed_pipeline.tgz
+```
+run parse-text.sh:
+```
+sh parse-text.sh "bu örnek bir cümledir."
+```
+
 ## Parse CoNLL-U File
 To parse a CoNLL-U file:
 
@@ -38,21 +51,6 @@ sh parse-from-conllu.sh input.conllu output.conllu
 ```
 
 
-## Parse Raw Text
-In Turku-neural-parser-pipeline folder:
-
-* Download and unpack the pre-trained morphology-based parser pipeline model :
-```
-wget http://tabilab.cmpe.boun.edu.tr/BOUN-PARS/model_tr_imst_ruled_morphed_pipeline.tgz
-tar -xvf model_tr_imst_ruled_morphed_pipeline.tgz
-```
-run parse-text.sh:
-```
-sh parse-text.sh "bu örnek bir cümledir."
-```
-
-
- 
 
 BOUN-Pars is developed by Şaziye Betül Özateş, Arzucan Özgür, Tunga Güngör from the Department of Computer Engineering, and Balkız Öztürk from the Department of Linguistics, at Bogazici University. 
 
