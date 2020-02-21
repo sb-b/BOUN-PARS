@@ -21,6 +21,10 @@ git clone https://github.com/sb-b/BOUN-PARS.git
 ```
 mv BOUN-PARS/* .
 ```
+
+## Parse CoNLL-U File
+To parse a CoNLL-U file:
+
 * Navigate to Parser-hybrid/saves folder.
 
 * Download and unpack the pre-trained morphology-based parser model :
@@ -28,17 +32,21 @@ mv BOUN-PARS/* .
 wget http://tabilab.cmpe.boun.edu.tr/BOUN-PARS/model_tr_imst_ruled_morphed.tgz
 tar -xvf model_tr_imst_ruled_morphed.tgz
 ```
-
-## Parse CoNLL-U File
-To parse a CoNLL-U file, run the following command in Turku-neural-parser-pipeline folder:
+* Run the following command in Turku-neural-parser-pipeline folder:
 ```
 sh parse-from-conllu.sh input.conllu output.conllu
 ```
 
 
 ## Parse Raw Text
-In Turku-neural-parser-pipeline folder, run parse-text.sh:
+In Turku-neural-parser-pipeline folder:
 
+* Download and unpack the pre-trained morphology-based parser pipeline model :
+```
+wget http://tabilab.cmpe.boun.edu.tr/BOUN-PARS/model_tr_imst_ruled_morphed_pipeline.tgz
+tar -xvf model_tr_imst_ruled_morphed_pipeline.tgz
+```
+run parse-text.sh:
 ```
 sh parse-text.sh "bu örnek bir cümledir."
 ```
