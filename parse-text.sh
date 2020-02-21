@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-echo "$1" | /usr/bin/python3.5 full_pipeline_stream.py --gpu -1 --conf models_mymodel_tr_imst-20-02/pipelines.yaml tokenize > input_tokenized.conllu
+echo "$1" | /usr/bin/python3.5 full_pipeline_stream.py --gpu -1 --conf model_tr_imst_ruled_morphed_pipeline/pipelines.yaml tokenize > input_tokenized.conllu
 
 python3 ./morp-based-model/add_morp_analysis_to_conllu.py input_tokenized.conllu input-text.txt
 
@@ -24,7 +24,7 @@ python3 ./morp-based-model/add_morpheme_to_conllu.py input_tokenized.conllu inpu
 python3 ./rule-based-model/rule_based_parser.py input-fullmorphed.conllu
 python3 ./morp-based-model/add_morpheme_to_conllu.py ruled-input-fullmorphed.conllu input-text-parsed-disamb.txt input-morphed-ruled.conllu last
 
-cat input-morphed-ruled.conllu | /usr/bin/python3.5 full_pipeline_stream.py --gpu -1 --conf models_mymodel_tr_imst-20-02/pipelines.yaml my_parse_conllu > output-morphed-ruled.conllu
+cat input-morphed-ruled.conllu | /usr/bin/python3.5 full_pipeline_stream.py --gpu -1 --conf model_tr_imst_ruled_morphed_pipeline/pipelines.yaml my_parse_conllu > output-morphed-ruled.conllu
 
 sed -i '1,2d' output-morphed-ruled.conllu
 
