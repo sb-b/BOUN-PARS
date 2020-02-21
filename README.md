@@ -36,7 +36,6 @@ sh parse-text.sh "bu örnek bir cümledir."
 ```
 
 ## Parse CoNLL-U File
-To parse a CoNLL-U file:
 
 * Navigate to Parser-hybrid/saves folder.
 
