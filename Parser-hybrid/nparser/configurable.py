@@ -36,7 +36,7 @@ except ImportError:
   from configparser import SafeConfigParser, NoOptionError
   
 from keras import backend as K
-K.set_image_dim_ordering('th')
+K.common.image_dim_ordering()
 #***************************************************************
 class Configurable(object):
   """ """

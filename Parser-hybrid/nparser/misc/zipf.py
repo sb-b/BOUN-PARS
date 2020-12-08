@@ -16,7 +16,7 @@
 # limitations under the License.
 
 from keras import backend as K
-K.set_image_dim_ordering('tf')
+K.common.image_dim_ordering()
 
 
 
@@ -31,7 +31,7 @@ import tensorflow as tf
 from nparser import Configurable
 from nparser.neural.optimizers import RadamOptimizer
 from keras import backend as K
-K.set_image_dim_ordering('th')
+K.common.image_dim_ordering()
 #***************************************************************
 class Zipf(Configurable):
   """ """
