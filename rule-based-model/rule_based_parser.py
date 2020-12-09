@@ -7,13 +7,24 @@ import os
 import codecs
 import fileinput
 
+specAdvFile = open('./rule-based-model/QuantityDegreeAdvList.txt','r')
+specAdvList = specAdvFile.readlines()
+specAdvFile.close()
+file = open('./rule-based-model/compound_word_list.txt','r')
+compound_words = file.readlines()
+file.close()
+file = open('./rule-based-model/reflexives.txt','r')
+ref_words = file.readlines()
+file.close()
+file = open('./rule-based-model/nmod_word_list.txt','r')
+nmod_words = file.readlines()
+file.close()
+file = open('./rule-based-model/compound_verbs_clean.txt','r')
+compound_verbs = file.readlines()
+file.close()
 
 def isCompoundWord(word1,word2,lem1,lem2):
-
-    file = open('./rule-based-model/compound_word_list.txt','r')
-
-    compound_words = file.readlines()
-  
+    global compound_words
     if word1+" "+lem2+"\n" in compound_words or word1+" "+word2+"\n" in compound_words:
        return True
     else:
@@ -21,9 +32,7 @@ def isCompoundWord(word1,word2,lem1,lem2):
 
 def isReflexiveWord(word1,word2):
 
-    file = open('./rule-based-model/reflexives.txt','r')
-
-    ref_words = file.readlines()
+    global ref_words
     if word1+" "+word2+"\n" in ref_words:
        return True
     else:
@@ -31,9 +40,7 @@ def isReflexiveWord(word1,word2):
 
 def isNmodWord(word1,word2,lem1,lem2):
 
-    file = open('./rule-based-model/nmod_word_list.txt','r')
-
-    nmod_words = file.readlines()
+    global nmod_words
   
     if word1+" "+lem2+"\n" in nmod_words or word1+" "+word2+"\n" in nmod_words:
        return True
@@ -44,9 +51,7 @@ def isNmodWord(word1,word2,lem1,lem2):
 
 def isCompoundVerb(word1,word2,lem1,lem2,lemma):
 
-    file = open('./rule-based-model/compound_verbs_clean.txt','r')
-
-    compound_verbs = file.readlines()
+    global compound_verbs
   
     if word1+" "+lem2+"\n" in compound_verbs or lem1+" "+lem2+"\n" in compound_verbs or word1+" "+word2[:2]+"\n" in compound_verbs or word1+" "+word2[:3]+"\n" in compound_verbs or word1+" "+word2[:4]+"\n" in compound_verbs or word1+" "+lemma+"\n" in compound_verbs:
        return True
@@ -343,8 +348,10 @@ def possConstructionRule(sent, lemmaList, uposList, xposList, morpList, ruleActi
          
    return ruleActions
 
-def advAdjRule(sent, lemmaList, uposList, xposList, morpList, ruleActions, tempAdvList):
 
+
+def advAdjRule(sent, lemmaList, uposList, xposList, morpList, ruleActions, tempAdvList):
+   global specAdvList
    i = 0
    while i < len(sent) - 1:
       
@@ -354,8 +361,8 @@ def advAdjRule(sent, lemmaList, uposList, xposList, morpList, ruleActions, tempA
 
       if "[Adv]" in morpList[i] and "[Adj]" in morpList[i+1] : 
                    
-         specAdvFile = open('./rule-based-model/QuantityDegreeAdvList.txt','r')
-         specAdvList = specAdvFile.readlines()
+         # specAdvFile = open('./rule-based-model/QuantityDegreeAdvList.txt','r')
+         # specAdvList = specAdvFile.readlines()
          if word+"\n" in specAdvList:
            
             ruleActions[index] = "adv"
@@ -542,6 +549,84 @@ def writeToConllFile(ruleList, filename):
           cols[9] = ruleList[i]
           i = i + 1
           f_new.write(str(cols[0]+"\t"+cols[1]+"\t"+cols[2]+"\t"+cols[3]+"\t"+cols[4]+"\t"+cols[5]+"\t"+cols[6]+"\t"+cols[7]+"\t"+cols[8]+"\t"+cols[9]+"\n"))
+
+
+def dontWriteToConllFilePlease(ruleList, text):
+
+    out = ""
+    i = 0
+    lines = text.split("\n")
+    for line in lines:
+       line = line.strip()
+
+       if line.startswith('#'):
+
+          out += line+"\n"
+       elif len(line) == 0:
+          out += line+"\n"
+          
+       elif re.match('^[0-9]+[-.][0-9]+\t', line):
+          out += line+"\n"
+       else:
+          cols=line.split("\t")
+          #if cols[9] == "_":
+           #  cols[9] = ruleList[i]
+          #else:
+           #  cols[9] = ruleList[i]+"|"+cols[9]
+          cols[9] = ruleList[i]
+          i = i + 1
+          out += str(cols[0]+"\t"+cols[1]+"\t"+cols[2]+"\t"+cols[3]+"\t"+cols[4]+"\t"+cols[5]+"\t"+cols[6]+"\t"+cols[7]+"\t"+cols[8]+"\t"+cols[9]+"\n")
+    return out
+
+def to_conllu(text):
+
+  wordList = []
+  lemmaList = []
+  uposList = []
+  xposList = []
+  morpList = []
+ 
+  allRules = []
+  mwe_flag = 0
+  lines = text.split("\n")
+  for line in lines:
+     line = line.strip()
+     
+     if len(line) == 0:
+       ruleList = rule_based_parser(wordList,lemmaList,uposList,xposList,morpList)
+       allRules = allRules + ruleList
+
+       wordList = []
+       lemmaList = []
+       uposList = []
+       xposList = []
+       morpList = []
+
+     if len(line) > 0 and not line.startswith('#'):
+       if re.match('^[0-9]+[-.][0-9]+\t', line):
+          mwe_flag = 1
+          mwe_word = line.split("\t")[1]
+
+       if not re.match('^[0-9]+[-.][0-9]+\t', line):
+
+         cols=line.split("\t")
+         if mwe_flag == 1:
+            wordList.append(cols[1]+"|"+mwe_word)
+         else:
+            wordList.append(cols[1])
+         lemmaList.append(cols[2])
+         uposList.append(cols[3])
+         if "|" in cols[4]:
+            xposList.append(cols[4].split('|')[0].split('=')[1])
+         else:
+            xposList.append(cols[4])
+         morpList.append(cols[8])
+         
+         mwe_flag = 0
+           
+      
+  return dontWriteToConllFilePlease(allRules, text)
+     
 
          
 if __name__=="__main__":

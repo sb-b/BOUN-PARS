@@ -4,7 +4,30 @@ import os
 import codecs
 import fileinput
 
+def get_plaintext(pred, base):
+  pred_sents = pred.split("\n\n")
+  base_sents = base.split("\n\n")
+  out = ""
+  for psent,bsent in zip(pred_sents,base_sents):
+       pwords = psent.split("\n")
+       bwords = bsent.split("\n")
 
+       for pword,bword in zip(pwords,bwords):
+
+          if not pword.startswith("#") and not pword == "" :
+          
+             pcols = pword.split("\t")
+             bcols = bword.split("\t")
+
+             
+             out += pcols[0]+"\t"+pcols[1]+"\t"+pcols[2]+"\t"+pcols[3]+"\t"+pcols[4]+"\t"+pcols[5]+"\t"+pcols[6]+"\t"+pcols[7]+"\t"+bcols[8]+"\t"+bcols[9]+"\n"
+          
+          else:
+          
+             out += pword+"\n"
+
+       out += "\n"
+  return out
 
 if __name__=="__main__":
 
