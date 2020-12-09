@@ -10,12 +10,13 @@ The pre-processing steps of parsing from raw text: the segmentation, morphologic
 
 * This program requires Turku-neural-parser-pipeline. Run the following commands
 ```
-git clone https://github.com/tabilab-dip/Turku-neural-parser-pipeline-BPARS.git
+git clone --depth 1 https://github.com/tabilab-dip/Turku-neural-parser-pipeline-BPARS.git
 cd Turku-neural-parser-pipeline-BPARS
 git submodule update --init --recursive
 python3 -m venv venv-parser-neural
 source venv-parser-neural/bin/activate
 pip3 install wheel
+pip3 install -r requirements-cpu.txt
 wget http://tabilab.cmpe.boun.edu.tr/BOUN-PARS/model_tr_imst_ruled_morphed_pipeline.tgz
 tar -xvf model_tr_imst_ruled_morphed_pipeline.tgz
 git clone --depth=1 --branch=master https://github.com/tabilab-dip/BOUN-PARS.git bpars
@@ -24,17 +25,20 @@ mv bpars/* .
 rm -rf ./bpars
 ```
 
+* Parser only runs in verbose mode. Need to make it switchable when deploying. (TODO)
+
 ## Run as a server
 
 * Here are the commands to run the flask server:
+    * Loading of the modules might take a few minutes. The server won't answer by that time
 ```
 python.py api.py
 
 in another terminal:
-    curl -X POST -H "Content-Type: application/json"     -d '{"query": "bu örnek bir cümledir."}'     http://lvh.me:5000/evaluate
+    curl -X POST -H "Content-Type: application/json" -d '{"query": "bu örnek bir cümledir."}' http://127.0.0.1:5000/evaluate
 
 ```
-* Loading of the modules might take a few minutes.
+
 
 ## Python evaluate
 
@@ -44,9 +48,11 @@ import evaluate
 # wait a few minutes, modules take some time to init
 result = evaluate.parse_plaintext("bu örnek bir cümledir.")
 print(result)
+
+# ...
 ```
 
-
+* Initial import takes some time, consequent parsings don't.
 
 ## Parse CoNLL-U File
 
