@@ -4,6 +4,24 @@ import os
 import codecs
 import fileinput
 
+def to_conllu(text):
+  lines = text.split("\n")
+  sent = ""
+  out = ""
+  for line in lines:
+    line = line.strip()
+
+    if len(line) == 0:
+      sent = sent + "\n"
+      out += sent
+      sent = ""
+
+    if len(line) > 0 and not line.startswith('#'):
+      cols=line.split("\t")
+      sent = sent + cols[1]+" "
+  return out
+
+             
 
 
 if __name__=="__main__":

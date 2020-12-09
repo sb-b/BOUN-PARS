@@ -8,47 +8,57 @@ The pre-processing steps of parsing from raw text: the segmentation, morphologic
 
 # Installation
 
-The required packages for the pre-trained TurkuNLP pipeline model is listed [here](https://turkunlp.org/Turku-neural-parser-pipeline/install.html). 
-
-After successfully installed the pre-trained TurkuNLP pipeline model, do the following steps:
-
-* Navigate to Turku-neural-parser-pipeline folder.
-* Clone the parser:
+* This program requires Turku-neural-parser-pipeline. Run the following commands
 ```
-git clone https://github.com/sb-b/BOUN-PARS.git
-```
-* Put everything inside BOUN-PARS folder into Turku-neural-parser-pipeline folder:
-```
-mv BOUN-PARS/* .
-```
-
-## Parse Raw Text
-In Turku-neural-parser-pipeline folder:
-
-* Download and unpack the pre-trained morphology-based parser pipeline model :
-```
+git clone https://github.com/tabilab-dip/Turku-neural-parser-pipeline-BPARS.git
+cd Turku-neural-parser-pipeline-BPARS
+git submodule update --init --recursive
+python3 -m venv venv-parser-neural
+source venv-parser-neural/bin/activate
+pip3 install wheel
 wget http://tabilab.cmpe.boun.edu.tr/BOUN-PARS/model_tr_imst_ruled_morphed_pipeline.tgz
 tar -xvf model_tr_imst_ruled_morphed_pipeline.tgz
+git clone --depth=1 --branch=master https://github.com/tabilab-dip/BOUN-PARS.git bpars
+rm -rf ./bpars/.git
+mv bpars/* .
+rm -rf ./bpars
 ```
-run parse-text.sh:
+
+## Run as a server
+
+* Here are the commands to run the flask server:
 ```
-sh parse-text.sh "bu örnek bir cümledir."
+python.py api.py
+
+in another terminal:
+    curl -X POST -H "Content-Type: application/json"     -d '{"query": "bu örnek bir cümledir."}'     http://lvh.me:5000/evaluate
+
 ```
+* Loading of the modules might take a few minutes.
+
+## Python evaluate
+
+* Example python use of trained model
+```python
+import evaluate
+# wait a few minutes, modules take some time to init
+result = evaluate.parse_plaintext("bu örnek bir cümledir.")
+print(result)
+```
+
+
 
 ## Parse CoNLL-U File
 
-* Navigate to Parser-hybrid/saves folder.
 
-* Download and unpack the pre-trained morphology-based parser model :
+```python
+import evaluate
+# wait a few minutes, modules take some time to init
+with open("some_conllu_file.conllu", "r") as f:
+    conllu_text = f.read()
+result = evaluate.parse_conllu(conllu_text)
+print(result)
 ```
-wget http://tabilab.cmpe.boun.edu.tr/BOUN-PARS/model_tr_imst_ruled_morphed.tgz
-tar -xvf model_tr_imst_ruled_morphed.tgz
-```
-* Run the following command in Turku-neural-parser-pipeline folder:
-```
-sh parse-from-conllu.sh input.conllu output.conllu
-```
-
 
 
 BOUN-Pars is developed by Şaziye Betül Özateş, Arzucan Özgür, Tunga Güngör from the Department of Computer Engineering, and Balkız Öztürk from the Department of Linguistics, at Bogazici University. 
