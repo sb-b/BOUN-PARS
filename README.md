@@ -13,7 +13,7 @@ The pre-processing steps of parsing from raw text: the segmentation, morphologic
 git clone --depth 1 https://github.com/tabilab-dip/Turku-neural-parser-pipeline-BPARS.git
 cd Turku-neural-parser-pipeline-BPARS
 git submodule update --init --recursive
-python3 -m venv venv-parser-neural
+python3.7 -m venv venv-parser-neural
 source venv-parser-neural/bin/activate
 pip3 install wheel
 pip3 install -r requirements-cpu.txt
