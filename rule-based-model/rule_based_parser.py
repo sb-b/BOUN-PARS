@@ -154,8 +154,15 @@ def wordCompoundRule(sent,lemmaList, uposList, xposList, morpList,ruleActions):
     i = 0
     while i < len(sent):
 
-        if i < len(sent)-1 and (isCompoundWord(sent[i].split('#',1)[0].lower(),sent[i+1].split('#',1)[0].lower(),lemmaList[i],lemmaList[i+1]) or isReflexiveWord(sent[i].split('#',1)[0].lower(),sent[i+1].split('#',1)[0].lower())) :
-
+        if i < len(sent)-1 and (isCompoundWord(sent[i].split('#',1)[0].lower(),sent[i+1].split('#',1)[0].lower(),lemmaList[i],lemmaList[i+1])):
+          
+             index = int(sent[i].split('#',1)[1])
+             index2 = int(sent[i+1].split('#',1)[1])
+             if index + 1 == index2:
+                ruleActions[index2] = "com"
+                popWord(sent,lemmaList,uposList,xposList,morpList,i+1)
+                i = 0
+        elif i < len(sent)-1 and isReflexiveWord(sent[i].split('#',1)[0].lower(),sent[i+1].split('#',1)[0].lower())) :
              index = int(sent[i].split('#',1)[1])
              index2 = int(sent[i+1].split('#',1)[1])
              if index + 1 == index2:
